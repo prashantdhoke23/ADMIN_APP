@@ -44,7 +44,7 @@ public class AdminController {
 
     @GetMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public List<AdminDTO> searchByCriteria(@RequestParam(name = "name", required = false) String name,
-	    @RequestParam(name = "name", required = false) String username) {
+	    @RequestParam(name = "email", required = false) String username) {
 	return adminService.searchByCriteria(name, username);
     }
 

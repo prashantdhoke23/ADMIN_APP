@@ -1,11 +1,21 @@
 package com.zensar.dto;
 
 public class AdminDTO {
-    private String name;
+	private int id;
+	private String name;
     private String password;
     private String email;
     private long phNumber;
 
+    
+    public int getId() {
+  		return id;
+  	}
+
+  	public void setId(int id) {
+  		this.id = id;
+  	}
+  	
     public String getName() {
 	return name;
     }

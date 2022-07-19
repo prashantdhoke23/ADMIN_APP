@@ -12,8 +12,8 @@ public interface AdminService {
 
     List<AdminDTO> searchByCriteria(String name, String email);
 
-    Admin updateAdmin(Admin admin);
+    AdminDTO registerAdmin(AdminDTO admin);
 
-    Admin registerAdmin(Admin admin);
+	AdminDTO updateAdmin(int id, AdminDTO data);
 
 }

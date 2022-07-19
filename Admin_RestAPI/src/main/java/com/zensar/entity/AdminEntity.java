@@ -9,29 +9,43 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Admin")
 public class AdminEntity {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private int id;
     private String name;
     private String password;
     private String email;
     private long phNumber;
 
-    public String getName() {
+    
+    public AdminEntity(int id, String name, String password, String email, long phNumber) {
+		
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.phNumber = phNumber;
+	}
+    
+    
+
+	public AdminEntity() {
+		
+	}
+
+
+	public String getName() {
 	return name;
     }
 
-    public AdminEntity() {
-	super();
-    }
+    public int getId() {
+  		return id;
+  	}
 
-    public Integer getId() {
-	return id;
-    }
-
-    public void setId(Integer id) {
-	this.id = id;
-    }
+  	public void setId(int id) {
+  		this.id = id;
+  	}
 
     public void setName(String name) {
 	this.name = name;
@@ -60,4 +74,11 @@ public class AdminEntity {
     public void setPhNumber(long phNumber) {
 	this.phNumber = phNumber;
     }
+
+	@Override
+	public String toString() {
+		return "AdminEntity [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email
+				+ ", phNumber=" + phNumber + "]";
+	}
+    
 }

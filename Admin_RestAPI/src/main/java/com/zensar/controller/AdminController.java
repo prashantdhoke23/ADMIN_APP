@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,14 +27,13 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping(value = "/user", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public Admin registerAdmin(@RequestBody Admin admin) {
-	return adminService.registerAdmin(admin);
-
+    public AdminDTO registerAdmin(@RequestBody AdminDTO admin) {
+    	return adminService.registerAdmin(admin);
     }
 
-    @PutMapping(value = "/user", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public Admin updateAdmin(@RequestBody Admin admin) {
-	return adminService.updateAdmin(admin);
+    @PutMapping(value = "/user/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    public AdminDTO updateAdmin(@PathVariable int id, @RequestBody AdminDTO data) {
+	return adminService.updateAdmin(id, data);
 
     }
 

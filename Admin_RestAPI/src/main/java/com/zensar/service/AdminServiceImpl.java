@@ -2,6 +2,7 @@ package com.zensar.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -84,16 +85,31 @@ public class AdminServiceImpl implements AdminService {
 		return adminDTOs;
 	}
 
-    @Override
-    public Admin updateAdmin(Admin admin) {
-	// TODO Auto-generated method stub
-	return null;
+	@Override
+    public AdminDTO updateAdmin(int id, AdminDTO data) {
+	
+    	Optional<AdminEntity> opAdminEntity = adminRepo.findById(id);
+    	
+    	if(opAdminEntity.isPresent()) {
+    		AdminEntity adminEntity = opAdminEntity.get();
+    		adminEntity.setEmail(data.getEmail());
+    		adminEntity.setName(data.getName());
+    		adminEntity.setPassword(data.getPassword());
+    		adminEntity.setPhNumber(data.getPhNumber());
+
+    		adminEntity = adminRepo.save(adminEntity);
+    	}
+    	return data;
     }
 
     @Override
-    public Admin registerAdmin(Admin admin) {
-	// TODO Auto-generated method stub
-	return null;
-    }
+    public AdminDTO registerAdmin(AdminDTO admin) {
+	
+		AdminEntity adminEntity = ConvertDTOToEntity(admin);
+		adminEntity = adminRepo.save(adminEntity);
+
+		return ConvertEntityToDTO(adminEntity);
+		
+	}
 
 }

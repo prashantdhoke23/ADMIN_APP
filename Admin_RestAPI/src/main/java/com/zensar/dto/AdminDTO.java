@@ -47,4 +47,12 @@ public class AdminDTO {
     public void setPhNumber(long phNumber) {
 	this.phNumber = phNumber;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        AdminDTO adminDto = (AdminDTO) obj;
+        if (this.name.equals(adminDto.getName()))
+            return true;
+        return false;
+    }
 }

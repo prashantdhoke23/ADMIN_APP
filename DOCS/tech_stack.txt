@@ -2,3 +2,12 @@ First Deliverable
  # UI
    # 1.Angular 12
    # 2.BootStrap 4
+   
+   
+ #BackEnd
+    # 1.STS - 4.12.1
+    # 2.Postman - 9.25.0
+    # 3.MySQL Work- 8.0.28
+    # 4.Java-(Jdk) - 1.8
+    # 5.Spring Boot- 2.5.6
+    # 6.Git - 2.17.0

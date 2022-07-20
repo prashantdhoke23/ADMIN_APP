@@ -10,7 +10,7 @@ public interface AdminService {
 
     List<AdminDTO> adminList();
 
-    List<AdminDTO> searchByCriteria(String name, String email);
+    List<AdminDTO> searchByCriteria(String name);
 
     AdminDTO registerAdmin(AdminDTO admin);
 

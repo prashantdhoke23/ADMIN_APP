@@ -17,6 +17,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @WebMvcTest
 class AdminControllerTest {
 
@@ -49,5 +52,17 @@ class AdminControllerTest {
 
 	    }
 
+	    @Test
+	    public void testSearchByCriteria() throws Exception {
+	        List<AdminDTO> adminDTOList = new ArrayList<AdminDTO>();
+	        adminDTOList.add(new AdminDTO());
+	        adminDTOList.add(new AdminDTO());
+	        when(this.adminService.searchByCriteria("prashant")).thenReturn(adminDTOList);
 
+	        MvcResult mvcResult = this.mockMvc.perform(get("http://localhost:7779/admin/search")
+	                .param("name", "prashant")).andExpect(status().isOk()).andReturn();
+	        String response = mvcResult.getResponse().getContentAsString();
+	        assertEquals(response.contains("email"), true);
+
+	    }
 }

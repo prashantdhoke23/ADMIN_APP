@@ -51,24 +51,20 @@ public class AdminServiceImpl implements AdminService {
 		return modelMapper.map(adminEntity, AdminDTO.class);
 	}
 	@Override
-	public List<AdminDTO> searchByCriteria(String name, String email) {
+	public List<AdminDTO> searchByCriteria(String name) {
 		
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<AdminEntity> criteriaQueryEntity = criteriaBuilder.createQuery(AdminEntity.class);
 		Root<AdminEntity> rootDTO = criteriaQueryEntity.from(AdminEntity.class);
 
 		Predicate namePredicate = criteriaBuilder.and();
-		Predicate emailPredicate = criteriaBuilder.and();
 		Predicate finalPredicate = criteriaBuilder.and();
 		
 		if (name != null && !"".equalsIgnoreCase(name)) {
 			namePredicate = criteriaBuilder.like(rootDTO.get("name"), "%" + name + "%");
 		}
-		if (email != null && !"".equalsIgnoreCase(email)) {
-			emailPredicate = criteriaBuilder.like(rootDTO.get("email"), "%" + email + "%");
-		}
 		
-		finalPredicate = criteriaBuilder.and(namePredicate, emailPredicate);
+		finalPredicate = criteriaBuilder.and(namePredicate);
 		criteriaQueryEntity.where(finalPredicate);
 		
 		TypedQuery<AdminEntity> typedQuery = entityManager.createQuery(criteriaQueryEntity);

@@ -48,7 +48,28 @@ public class AdminDTO {
 	this.phNumber = phNumber;
     }
     
+    
+    
     @Override
+	public String toString() {
+		return "AdminDTO [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", phNumber="
+				+ phNumber + "]";
+	}
+
+    
+	public AdminDTO(int id, String name, String password, String email, long phNumber) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.phNumber = phNumber;
+	}
+
+	
+	public AdminDTO() {
+	}
+
+	@Override
     public boolean equals(Object obj) {
         AdminDTO adminDto = (AdminDTO) obj;
         if (this.name.equals(adminDto.getName()))

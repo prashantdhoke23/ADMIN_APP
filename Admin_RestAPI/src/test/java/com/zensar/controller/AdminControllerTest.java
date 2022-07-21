@@ -73,18 +73,18 @@ class AdminControllerTest {
 		public void testuUpdateAdmin() throws Exception {
 	    	AdminDTO adminDTO=new AdminDTO();
 	    	adminDTO.setId(1);
-	    	adminDTO.setName("prashant");
+	    	adminDTO.setName("prashants");
 	    	adminDTO.setEmail("prashant23@gmail.com");
 			when(this.adminService.updateAdmin(1, adminDTO)).thenReturn(adminDTO);
 			MvcResult mvcResult = this.mockMvc
 					.perform(put("http://localhost:7779/admin/user/1").contentType("application/json")
 							.content(objectMapper.writeValueAsString(adminDTO)))
 					.andExpect(status().isOk())
-					.andExpect(content().string(containsString("prashant")))
+					.andExpect(content().string(containsString("prashants")))
 					.andReturn();
 
 			String response = mvcResult.getResponse().getContentAsString();
-			assertEquals(response.contains("prashant"), true);
+			assertEquals(response.contains("prashants"), true);
 
 		}
 }

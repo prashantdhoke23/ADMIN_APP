@@ -9,11 +9,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zensar.dto.AdminDTO;
 import com.zensar.service.AdminService;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -65,4 +68,23 @@ class AdminControllerTest {
 	        assertEquals(response.contains("email"), true);
 
 	    }
+	    
+	    @Test
+		public void testuUpdateAdmin() throws Exception {
+	    	AdminDTO adminDTO=new AdminDTO();
+	    	adminDTO.setId(1);
+	    	adminDTO.setName("prashant");
+	    	adminDTO.setEmail("prashant23@gmail.com");
+			when(this.adminService.updateAdmin(1, adminDTO)).thenReturn(adminDTO);
+			MvcResult mvcResult = this.mockMvc
+					.perform(put("http://localhost:7779/admin/user/1").contentType("application/json")
+							.content(objectMapper.writeValueAsString(adminDTO)))
+					.andExpect(status().isOk())
+					.andExpect(content().string(containsString("prashant")))
+					.andReturn();
+
+			String response = mvcResult.getResponse().getContentAsString();
+			assertEquals(response.contains("prashant"), true);
+
+		}
 }

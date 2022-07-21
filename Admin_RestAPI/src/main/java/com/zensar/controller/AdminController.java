@@ -35,8 +35,9 @@ public class AdminController {
     }
 
     @PutMapping(value = "/user/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public AdminDTO updateAdmin(@PathVariable int id, @RequestBody AdminDTO data) {
-	return adminService.updateAdmin(id, data);
+    public ResponseEntity<AdminDTO>  updateAdmin(@PathVariable int id, @RequestBody AdminDTO data) {
+	    AdminDTO adminDTO=this.adminService.updateAdmin(id, data);
+    	return new ResponseEntity<AdminDTO>(adminDTO,HttpStatus.OK);
 
     }
 

@@ -63,7 +63,7 @@ class AdminControllerTest {
 	        adminDTOList.add(new AdminDTO());
 	        when(this.adminService.searchByCriteria("prashant")).thenReturn(adminDTOList);
 
-	        MvcResult mvcResult = this.mockMvc.perform(get("http://localhost:7779/admin/search")
+	        MvcResult mvcResult = this.mockMvc.perform(get("http://localhost:7779/admin/")
 	                .param("name", "prashant")).andExpect(status().isOk()).andReturn();
 	        String response = mvcResult.getResponse().getContentAsString();
 	        assertEquals(response.contains("email"), true);

@@ -117,5 +117,15 @@ public class AdminServiceImpl implements AdminService {
 		}
 		throw new InvalidIDException();
 	}
+	
+	@Override
+	public Boolean deleteUserById(int id) {
+		
+			if(adminRepo.existsById(id)) {
+				adminRepo.deleteById(id);
+				return true;
+			}	
+			return false;
+	}
 
 }

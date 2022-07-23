@@ -42,7 +42,7 @@ public class AdminController {
 
     }
 
-    @GetMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    @GetMapping(value = "/user", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public List<AdminDTO> adminList() {
 	return adminService.adminList();
     }
@@ -58,6 +58,12 @@ public class AdminController {
     	AdminDTO adminDTO=this.adminService.userDetailsById(id);
 		return new ResponseEntity<AdminDTO>(adminDTO,HttpStatus.OK);
     	
+    }
+    
+    @DeleteMapping(value="/user/{id}" ,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    public ResponseEntity<Boolean> deleteUserById(@PathVariable int id){
+    	
+    	return new ResponseEntity<Boolean>(adminService.deleteUserById(id), HttpStatus.OK);
     }
 
 }

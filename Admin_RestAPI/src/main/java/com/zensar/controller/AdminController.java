@@ -48,7 +48,7 @@ public class AdminController {
 	return new ResponseEntity<List<AdminDTO>>(adminDTO,HttpStatus.OK) ;
     }
 
-    @GetMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    @GetMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<List<AdminDTO>> searchByCriteria(@RequestParam(name = "name", required = false) String name) {
         List<AdminDTO> adminDTO=this.adminService.searchByCriteria(name);
     return new ResponseEntity<List<AdminDTO>>(adminDTO,HttpStatus.OK);

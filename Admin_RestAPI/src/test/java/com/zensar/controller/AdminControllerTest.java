@@ -87,4 +87,22 @@ class AdminControllerTest {
 			assertEquals(response.contains("prashants"), true);
 
 		}
+	    
+	    @Test
+	    public void testUserDetailsById() throws Exception{
+
+	        AdminDTO adminDTO=new AdminDTO();
+	        adminDTO.setName("Prashant");
+	     
+
+	        when(this.adminService.userDetailsById(1)).thenReturn(adminDTO);
+
+	        MvcResult mvcResult=this.mockMvc.perform(get("http://localhost:7779/admin/user/"+1))
+	        .andExpect(status().isOk())
+	        .andExpect(content().string(containsString("Prashant")))
+	        .andReturn();
+
+	        String response=mvcResult.getResponse().getContentAsString();
+	        assertEquals(response.contains("Prashant"),true);
+	        }
 }

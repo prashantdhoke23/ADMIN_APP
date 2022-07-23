@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Service;
 
 import com.zensar.entity.AdminEntity;
+import com.zensar.exception.InvalidIDException;
 import com.zensar.exception.InvalidSearchingDataException;
 import com.zensar.repo.AdminRepo;
 import com.zensar.dto.AdminDTO;
@@ -106,6 +107,15 @@ public class AdminServiceImpl implements AdminService {
 
 		return ConvertEntityToDTO(adminEntity);
 		
+	}
+	@Override
+	public AdminDTO userDetailsById(int id) {
+		Optional<AdminEntity> opAdminEntity=adminRepo.findById(id);
+		if(opAdminEntity.isPresent()) {
+			AdminEntity adminEntity=opAdminEntity.get();
+			return ConvertEntityToDTO(adminEntity);
+		}
+		throw new InvalidIDException();
 	}
 
 }

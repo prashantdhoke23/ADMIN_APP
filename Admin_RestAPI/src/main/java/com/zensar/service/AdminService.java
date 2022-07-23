@@ -16,4 +16,6 @@ public interface AdminService {
 
 	AdminDTO updateAdmin(int id, AdminDTO data);
 
+	AdminDTO userDetailsById(int id);
+
 }

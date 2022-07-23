@@ -17,4 +17,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 				HttpStatus.CONFLICT, request);
 		return response;
 	}
+	
+	@ExceptionHandler(value = InvalidIDException.class)
+	public ResponseEntity<Object> handleConflictInavlidID(RuntimeException exception, WebRequest request) {
+		String errorMessage = "{\"error\":" + exception.toString() + " \"}";
+		ResponseEntity<Object> response = handleExceptionInternal(exception, errorMessage, new org.springframework.http.HttpHeaders(),
+				HttpStatus.CONFLICT, request);
+		return response;
+	}
 }

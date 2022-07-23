@@ -43,8 +43,9 @@ public class AdminController {
     }
 
     @GetMapping(value = "/user", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public List<AdminDTO> adminList() {
-	return adminService.adminList();
+    public ResponseEntity<List<AdminDTO>>  adminList() {
+    	List<AdminDTO> adminDTO=this.adminService.adminList();
+	return new ResponseEntity<List<AdminDTO>>(adminDTO,HttpStatus.OK) ;
     }
 
     @GetMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })

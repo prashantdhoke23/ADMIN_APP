@@ -105,4 +105,21 @@ class AdminControllerTest {
 	        String response=mvcResult.getResponse().getContentAsString();
 	        assertEquals(response.contains("Prashant"),true);
 	        }
+	    
+	    @Test                                //Service-10
+	    public void testAdminList() throws Exception {
+	    List<AdminDTO> adminDTO=new ArrayList<>();
+	    adminDTO.add(new AdminDTO());
+	    adminDTO.add(new AdminDTO());
+	    when(this.adminService.adminList()).thenReturn(adminDTO);
+
+	    MvcResult mvcResult=this.mockMvc.perform(get("http://localhost:7779/admin/user")
+	    
+	    )
+	    .andExpect(status().isOk())
+	    .andReturn();
+
+	    String response=mvcResult.getResponse().getContentAsString();
+	    assertEquals(response.contains("email"),true);
+	    }
 }

@@ -107,7 +107,7 @@ class AdminControllerTest {
 	        assertEquals(response.contains("Prashant"),true);
 	        }
 	    
-	    @Test                                //Service-10
+	    @Test                              
 	    public void testAdminList() throws Exception {
 	    List<AdminDTO> adminDTO=new ArrayList<>();
 	    adminDTO.add(new AdminDTO());

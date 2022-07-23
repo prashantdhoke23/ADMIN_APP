@@ -17,6 +17,7 @@ import com.zensar.dto.AdminDTO;
 import com.zensar.service.AdminService;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -122,4 +123,19 @@ class AdminControllerTest {
 	    String response=mvcResult.getResponse().getContentAsString();
 	    assertEquals(response.contains("email"),true);
 	    }
+	    
+		@Test									//Service-12
+		public void testDeleteUserById() throws Exception{
+
+		
+		when(this.adminService.deleteUserById(1)).thenReturn(true);
+
+		MvcResult mvcResult=this.mockMvc.perform(delete("http://localhost:7779/admin/user/"+1)
+		)
+		.andExpect(status().isOk())
+		.andReturn();
+
+		String response=mvcResult.getResponse().getContentAsString();
+		assertEquals(response.contains("true"),true);
+		}
 }

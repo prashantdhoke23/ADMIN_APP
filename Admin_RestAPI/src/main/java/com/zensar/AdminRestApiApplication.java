@@ -39,7 +39,7 @@ public class AdminRestApiApplication {
 
 	}
 	private ApiInfo getApiInfo() {
-	ApiInfo apiInfo=new ApiInfo("Stock Rest Api Documentation",
+	ApiInfo apiInfo=new ApiInfo("Admin Rest Api Documentation",
 	"This page gives Admin Rest API Doucmentation ", "2.5",
 	"My Terms of services",
 	new Contact("Admin Services System","http://localhot:7779","admin-team@zensar.com"),
